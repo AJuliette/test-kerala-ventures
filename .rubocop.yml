@@ -1,0 +1,16 @@
+require: rubocop-rspec
+
+AllCops:
+  DisplayStyleGuide: true
+  DisplayCopNames: true
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'config/environments/*.rb'
+    - 'bin/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Documentation:
+    Enabled: false
