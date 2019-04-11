@@ -8,6 +8,7 @@ end
 
 File.read('./.ruby-version')
 
+gem 'activerecord-import'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
@@ -31,7 +32,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'activerecord-import'
   gem 'annotate', '~> 2.7', '>= 2.7.4'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop', '~> 0.60.0', require: false
