@@ -35,7 +35,4 @@ RSpec.describe Person, type: :model do
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
     end
   end
-
-  context 'when testing validations' do
-  end
 end
