@@ -1,10 +1,8 @@
 # README
 
-As I am dealing with a important numbers of rows I chose to use the gem 'activerecord-import'. 
-It has many stars on his repository and its last update is from last week so it looked trustworthy (I also found a bunch of articles which validated its use among developers).
+As I am dealing with a important numbers of rows I chose to use the gem `activerecord-import`. 
 My aim using it was to reduce the number of insert commands to the database which are costly in times.
-With this gem, when there are files with hundreds of thousands of lines, instead of millions of calls to the database there are only one insert for the columns not concerned by a high level of update and one insert for each column concerned by a high level of update.
-In our example then, there are 2 inserts for people.csv and 5 inserts for building.csv.
+In our example, there are 2 inserts for people.csv and 5 inserts for building.csv.
 
 To set-up the repo:
 * `bundle install`
