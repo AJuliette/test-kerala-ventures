@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'pry'
 
 class Importer
-  def self.create_array_of_attributes(file_path)
-    CSV.foreach(file_path, headers: true).map(&:to_hash)
-  end
-
-  def self.get_objects(klass, record_attributes)
-    records = record_attributes.map do |attribute|
-      klass.new(attribute)
+  def self.prepare_records(klass, file_path)
+    records = CSV.foreach(file_path, headers: true).map do |row|
+      klass.new(row.to_hash)
     end
     check_records(records)
     records
@@ -22,11 +17,14 @@ class Importer
 
   def self.import_from_csv(high_level_of_updates, file_path, klass)
     Error::ImporterError.validate_high_level_update(high_level_of_updates, klass)
+
+    records = prepare_records(klass, file_path)
+
     column_names = CSV.open(file_path, &:readline)
-    record_attributes = create_array_of_attributes(file_path)
-    records = get_objects(klass, record_attributes)
     low_level_of_update_columns = (column_names - high_level_of_updates - ['reference']).map(&:to_sym)
+
     klass.import records, on_duplicate_key_update: { conflict_target: [:reference], columns: low_level_of_update_columns, validate: false }
+
     import_high_level_of_update(high_level_of_updates, klass, records)
   end
 
