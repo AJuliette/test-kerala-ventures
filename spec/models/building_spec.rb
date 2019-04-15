@@ -22,6 +22,7 @@ RSpec.describe Building, type: :model do
     subject(:new_building) { described_class.new }
 
     describe 'Database of Item' do
+      # A mon avis, ce type de check n'est pas vraiment nécessaire, à débattre
       it { is_expected.to have_db_column(:id).of_type(:integer) }
       it { is_expected.to have_db_column(:reference).of_type(:string) }
       it { is_expected.to have_db_column(:address).of_type(:string) }
