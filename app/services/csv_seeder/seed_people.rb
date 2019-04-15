@@ -20,4 +20,5 @@ module CsvSeeder
   end
 end
 
+# Bizarre, pourquoi appeler perform ici ?
 CsvSeeder::SeedPeople.perform
